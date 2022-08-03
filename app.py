@@ -1,3 +1,4 @@
+
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 
@@ -8,7 +9,7 @@ app = Flask(__name__)
 model = pickle.load(open('lineartitnic.pkl','rb')) 
 
 
-
+@app.route('/')
 def home():
       return render_template("index.html")
   
@@ -23,6 +24,8 @@ def pr():
   
   prediction = model.predict([[exp,exp1,exp2,exp3,exp4,exp5]])
 
-  return render_template('index.html', prediction_text='Regression Model  has predicted salary for given experinace is : {}'.format(prediction))
-if __name__=='__main__':
+  return render_template('index.html', prediction_text='Regression Model  has predicted is : {}'.format(prediction))
+
+
+if __name__ == "__main__":
     app.run(debug=True)
